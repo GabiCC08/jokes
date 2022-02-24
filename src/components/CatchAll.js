@@ -17,7 +17,7 @@ export const CatchAll = () => {
       setPage(content);
       setLoading(false);
     }
-  }, []);
+  }, [isEditingOrPreviewing]);
 
   if (loading) {
     return <Loading />;
