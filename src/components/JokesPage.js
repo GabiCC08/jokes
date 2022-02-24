@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Layout } from "antd";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import axios from "axios";
 import CategorySelector from "./CategorySelector";
 import InputSearch from "./InputSearch";
