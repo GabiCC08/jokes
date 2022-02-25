@@ -6,6 +6,11 @@ import CategorySelector from "./CategorySelector";
 import InputSearch from "./InputSearch";
 import JokeCard from "./JokeCard";
 import JokesTable from "./JokesTable";
+import {
+  GridComponent,
+  ColumnsDirective,
+  ColumnDirective,
+} from "@syncfusion/ej2-react-grids";
 
 function JokesPage() {
   const [joke, setJoke] = useState("");
@@ -63,19 +68,47 @@ function JokesPage() {
   };
 
   return (
-    <Layout className="App">
-      <h1>Chuck Norris Jokes</h1>
-      <Row justify="space-around" align="top">
-        <Col xs={22} sm={20} md={10}>
-          <CategorySelector categories={categories} onFinish={onFinish} />
-          <JokeCard joke={joke} />
-        </Col>
-        <Col xs={22} sm={20} md={10}>
-          <InputSearch onFinish={onFinish2} />
-          {list ? <JokesTable list={list} columns={columns} /> : null}
-        </Col>
-      </Row>
-    </Layout>
+    <>
+      <Layout className="App">
+        <h1>Chuck Norris Jokes</h1>
+        <Row justify="space-around" align="top">
+          <Col xs={22} sm={20} md={10}>
+            <CategorySelector categories={categories} onFinish={onFinish} />
+            <JokeCard joke={joke} />
+          </Col>
+          <Col xs={22} sm={20} md={10}>
+            <InputSearch onFinish={onFinish2} />
+            {list ? <JokesTable list={list} columns={columns} /> : null}
+          </Col>
+        </Row>
+      </Layout>
+      <div className="control-pane">
+        <div className="control-section">
+          <GridComponent dataSource={list} height="350">
+            <ColumnsDirective>
+              <ColumnDirective
+                field="id"
+                headerText="Joke ID"
+                width="120"
+                textAlign="Right"
+              ></ColumnDirective>
+              <ColumnDirective
+                field="value"
+                headerText="Joke"
+                width="150"
+              ></ColumnDirective>
+              <ColumnDirective
+                field="created_at"
+                headerText="Create At"
+                width="130"
+                format="yMd"
+                textAlign="Right"
+              />
+            </ColumnsDirective>
+          </GridComponent>
+        </div>
+      </div>
+    </>
   );
 }
 
